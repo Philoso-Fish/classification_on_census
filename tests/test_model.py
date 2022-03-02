@@ -88,6 +88,6 @@ def test_metrics(data):
 
     precision, recall, fbeta = compute_model_metrics(y_test, preds)
 
-    assert precision
-    assert recall
-    assert fbeta
+    assert isinstance(precision, float)
+    assert isinstance(recall, float)
+    assert isinstance(fbeta, float)

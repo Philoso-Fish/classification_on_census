@@ -35,6 +35,9 @@ X_test, y_test, encoder_test, lb_test = process_data(
 clf = train_model(X_train, y_train)
 preds = inference(clf, X_test)
 precision, recall, fbeta = compute_model_metrics(y_test, preds)
+print("Precision: ", precision)
+print("Recall: ", recall)
+print("Fbeta: ", fbeta)
 
 # save model
 filename = "classifier.sav"

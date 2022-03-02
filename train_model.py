@@ -8,7 +8,7 @@ from ml.model import train_model, inference, compute_model_metrics, test_on_slic
 # Add the necessary imports for the starter code.
 
 # Add code to load in the data.
-data = pd.read_csv("processed_census.csv")
+data = pd.read_csv("processed_census.csv", index_col=0)
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 train, test = train_test_split(data, test_size=0.20)
 

@@ -8,13 +8,12 @@ import pandas as pd
 
 @pytest.fixture(scope="session")
 def data():
-    cols = ['Unnamed: 0', 'age', 'workclass', 'fnlgt', 'education', 'education-num',
+    cols = ['age', 'workclass', 'fnlgt', 'education', 'education-num',
        'marital-status', 'occupation', 'relationship', 'race', 'sex',
        'capital-gain', 'capital-loss', 'hours-per-week', 'native-country',
        'salary']
     data = [
         [
-            0,
             39,
             "State-gov",
             77516,
@@ -32,7 +31,6 @@ def data():
             " <=50K",
         ],
         [
-            1,
             50,
             "Self-emp-not-inc",
             83311,
@@ -50,7 +48,6 @@ def data():
             " <=50K",
         ],
         [
-            2,
             38,
             "Private",
             215646,
@@ -68,7 +65,6 @@ def data():
             " <=50K",
         ],
         [
-            3,
             53,
             "Private",
             234721,
@@ -86,7 +82,6 @@ def data():
             " <=50K",
         ],
         [
-            4,
             28,
             "Private",
             338409,
@@ -104,7 +99,6 @@ def data():
             " <=50K",
         ],
         [
-            5,
             37,
             "Private",
             284582,
@@ -122,7 +116,6 @@ def data():
             " <=50K",
         ],
         [
-            6,
             49,
             "Private",
             160187,
@@ -140,7 +133,6 @@ def data():
             " <=50K",
         ],
         [
-            7,
             52,
             "Self-emp-not-inc",
             209642,
@@ -158,7 +150,6 @@ def data():
             " >50K",
         ],
         [
-            8,
             31,
             "Private",
             45781,
@@ -176,7 +167,6 @@ def data():
             " >50K",
         ],
         [
-            9,
             42,
             "Private",
             159449,

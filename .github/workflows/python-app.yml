@@ -40,6 +40,6 @@ jobs:
         aws-region: eu-central-1
     - name: Test with pytest
       run: |
-        pytest
+        python -m pytest tests
     
 

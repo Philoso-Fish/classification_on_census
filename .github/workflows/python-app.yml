@@ -36,6 +36,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
+        access-key-id: AKIA2IPTQIPHNEVQZFO5
         aws-region: eu-central-1
     - name: Test with pytest
       run: |

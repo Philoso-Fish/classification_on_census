@@ -1,17 +1,30 @@
+import pandas as pd
+import pytest
 from sklearn.model_selection import train_test_split
 
 from ml.data import process_data
-from ml.model import train_model, inference, compute_model_metrics
-import pytest
-import pandas as pd
+from ml.model import compute_model_metrics, inference, train_model
 
 
 @pytest.fixture(scope="session")
 def data():
-    cols = ['age', 'workclass', 'fnlgt', 'education', 'education-num',
-       'marital-status', 'occupation', 'relationship', 'race', 'sex',
-       'capital-gain', 'capital-loss', 'hours-per-week', 'native-country',
-       'salary']
+    cols = [
+        "age",
+        "workclass",
+        "fnlgt",
+        "education",
+        "education-num",
+        "marital-status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "capital-gain",
+        "capital-loss",
+        "hours-per-week",
+        "native-country",
+        "salary",
+    ]
     data = [
         [
             39,

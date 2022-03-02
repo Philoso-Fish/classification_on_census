@@ -1,11 +1,13 @@
 # Put the code for your API here.
+import pickle
 from typing import List
-from fastapi import FastAPI
-from pydantic import BaseModel, Field
-from ml.model import inference
+
 import numpy as np
 import pandas as pd
-import pickle
+from fastapi import FastAPI
+from pydantic import BaseModel, Field
+
+from ml.model import inference
 
 # instatiate the app
 app = FastAPI()
@@ -16,16 +18,16 @@ class Body(BaseModel):
     workclass: List[str]
     fnlgt: List[int]
     education: List[str]
-    education_num: List[int] = Field(alias='education-num')
-    marital_status: List[str] = Field(alias='marital-status')
+    education_num: List[int] = Field(alias="education-num")
+    marital_status: List[str] = Field(alias="marital-status")
     occupation: List[str]
     relationship: List[str]
     race: List[str]
     sex: List[str]
-    capital_gain: List[int] = Field(alias='capital-gain')
-    capital_loss: List[int] = Field(alias='capital-loss')
-    hours_per_week: List[int] = Field(alias='hours-per-week')
-    native_country: List[str] = Field(alias='native-country')
+    capital_gain: List[int] = Field(alias="capital-gain")
+    capital_loss: List[int] = Field(alias="capital-loss")
+    hours_per_week: List[int] = Field(alias="hours-per-week")
+    native_country: List[str] = Field(alias="native-country")
 
     class Config:
         schema_extra = {
@@ -34,16 +36,16 @@ class Body(BaseModel):
                 "workclass": ["Private"],
                 "fnlgt": ["77516"],
                 "education": ["Masters"],
-                'education-num': ["14"],
-                'marital-status': ["Divorced"],
+                "education-num": ["14"],
+                "marital-status": ["Divorced"],
                 "occupation": ["Exec-managerial"],
                 "relationship": ["Husband"],
                 "race": ["Black"],
                 "sex": ["Female"],
-                'capital-gain': ["2222"],
-                'capital-loss': ["0"],
-                'hours-per-week': ["35"],
-                'native-country': ["Cuba"]
+                "capital-gain": ["2222"],
+                "capital-loss": ["0"],
+                "hours-per-week": ["35"],
+                "native-country": ["Cuba"],
             }
         }
 
@@ -74,7 +76,7 @@ async def predict(body: Body):
     X_continuous = df.drop(*[cat_features], axis=1)
 
     # load model and encoder
-    file = open("classifier_fastapi.sav", 'rb')
+    file = open("classifier_fastapi.sav", "rb")
     model = pickle.load(file)
     file = open("encoder_fastapi.sav", "rb")
     encoder = pickle.load(file)

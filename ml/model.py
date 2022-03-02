@@ -1,6 +1,6 @@
+import numpy as np
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.tree import DecisionTreeClassifier
-import numpy as np
 
 
 # Optional: implement hyperparameter tuning.

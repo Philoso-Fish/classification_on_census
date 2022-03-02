@@ -130,3 +130,4 @@ dmypy.json
 /census.csv
 /processed_census.csv
 /classifier.sav
+/encoder.sav

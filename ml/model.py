@@ -1,5 +1,6 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.tree import DecisionTreeClassifier
+import numpy as np
 
 
 # Optional: implement hyperparameter tuning.
@@ -61,3 +62,43 @@ def inference(model, X):
         Predictions from the model.
     """
     return model.predict(X)
+
+def test_on_slices(model, data, col, label, encoder, lb, categorical_features):
+    """
+    Tests on slices of categorical data
+
+    :param model: sklearn, trained model
+    :param data: DataFrame, preprocessed data
+    :param col: str, Column name of categorical data
+    :param label: str, Label column
+    :param encoder: OneHotEncoder
+    :param lb: Label binarizer
+    :param categorical_features: list[str]
+        List containing the names of the categorical features (default=[])
+    :return: list(tuple(value:str, precision:float, recall:float, fbeta:float))
+    """
+    result = []
+
+    # get unique values
+    ar_unique = data[col].unique()
+
+    for val in ar_unique:
+        df_temp = data.loc[data[col] == val]
+
+        # transform data
+        y = df_temp[label]
+        X = df_temp.drop([label], axis=1)
+
+        X_categorical = X[categorical_features].values
+        X_continuous = X.drop(*[categorical_features], axis=1)
+        X_categorical = encoder.transform(X_categorical)
+        y = lb.transform(y.values).ravel()
+        X = np.concatenate([X_continuous, X_categorical], axis=1)
+
+        # get predictions and metrics
+        preds = inference(model, X)
+        precision, recall, fbeta = compute_model_metrics(y, preds)
+
+        result.append((val, precision, recall, fbeta))
+
+    return result

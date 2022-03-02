@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 from sklearn.model_selection import train_test_split
 from ml.data import process_data
-from ml.model import train_model, inference, compute_model_metrics
+from ml.model import train_model, inference, compute_model_metrics, test_on_slices
 
 # Add the necessary imports for the starter code.
 
@@ -36,5 +36,21 @@ clf = train_model(X_train, y_train)
 preds = inference(clf, X_test)
 precision, recall, fbeta = compute_model_metrics(y_test, preds)
 
+# save model
 filename = "classifier.sav"
 pickle.dump(clf, open(filename, 'wb'))
+# save encoder
+filename = "encoder.sav"
+pickle.dump(encoder, open(filename, 'wb'))
+
+list_slice = test_on_slices(clf, data, 'education', "salary", encoder, lb, cat_features)
+
+# print model metrics on slices of variable education
+with open('slie_output.txt', 'w') as f:
+    f.write("Model metrics on variable 'Education'\n")
+    for tpl in list_slice:
+        f.write(f'Value: {tpl[0]}\n')
+        f.write(f'Precision: {tpl[1]}\n')
+        f.write(f'Recall: {tpl[2]}\n')
+        f.write(f'Fbeta: {tpl[3]}\n')
+        f.write('###############################\n')

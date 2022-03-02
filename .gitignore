@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 /census.csv
 /processed_census.csv
+/classifier.sav

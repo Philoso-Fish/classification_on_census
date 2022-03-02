@@ -63,6 +63,7 @@ def inference(model, X):
     """
     return model.predict(X)
 
+
 def test_on_slices(model, data, col, label, encoder, lb, categorical_features):
     """
     Tests on slices of categorical data

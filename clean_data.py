@@ -16,15 +16,23 @@ print(df.columns)
 
 # data contains columns with ' ?' value
 # remove these rows
-list_cat_cols = ['workclass', 'education', 'marital-status', 'occupation', 'relationship',
-                 'race', 'sex', 'native-country']
+list_cat_cols = [
+    "workclass",
+    "education",
+    "marital-status",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "native-country",
+]
 print("Data shape before dropping rows: ", df.shape)
 for col in list_cat_cols:
-    df = df.drop(df[df[col].str.contains('?', regex=False)].index)
+    df = df.drop(df[df[col].str.contains("?", regex=False)].index)
     # remove leading spaces
     df[col] = df[col].apply(lambda x: x.strip())
 
 print("Data shape after dropping rows: ", df.shape)
 
 # save data as processed csv
-df.to_csv('processed_census.csv')
+df.to_csv("processed_census.csv")

@@ -8,6 +8,10 @@ import pandas as pd
 
 @pytest.fixture(scope="session")
 def data():
+    cols = ['Unnamed: 0', 'age', 'workclass', 'fnlgt', 'education', 'education-num',
+       'marital-status', 'occupation', 'relationship', 'race', 'sex',
+       'capital-gain', 'capital-loss', 'hours-per-week', 'native-country',
+       'salary']
     data = [
         [
             0,
@@ -190,7 +194,7 @@ def data():
             " >50K",
         ],
     ]
-    return data
+    return pd.DataFrame(data, columns=cols)
 
 
 def test_train(data):

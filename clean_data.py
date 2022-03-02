@@ -21,6 +21,8 @@ list_cat_cols = ['workclass', 'education', 'marital-status', 'occupation', 'rela
 print("Data shape before dropping rows: ", df.shape)
 for col in list_cat_cols:
     df = df.drop(df[df[col].str.contains('?', regex=False)].index)
+    # remove leading spaces
+    df[col] = df[col].apply(lambda x: x.strip())
 
 print("Data shape after dropping rows: ", df.shape)
 

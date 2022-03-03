@@ -1,6 +1,7 @@
 # Put the code for your API here.
 import pickle
 from typing import List
+import os
 
 import numpy as np
 import pandas as pd
@@ -11,6 +12,12 @@ from ml.model import inference
 
 # instatiate the app
 app = FastAPI()
+
+if "DYNO" in os.environ and os.path.isdir(".dvc"):
+    os.system("dvc config core.no_scm true")
+    if os.system("dvc pull") != 0:
+        exit("dvc pull failed")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
 
 
 class Body(BaseModel):
